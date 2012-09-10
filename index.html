@@ -33,8 +33,9 @@
 var game = new shmup.game();
 var canvas = document.getElementById('canvas');
 
-game.init(canvas.getContext('2d'));
-game.start();
+game.init(canvas.getContext('2d'), function(){
+	game.start();
+});
 /*]]>*/
 </script>
 </body>
