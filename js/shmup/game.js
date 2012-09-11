@@ -13,14 +13,16 @@ shmup.game.prototype.addEntity = function(entity) {
 shmup.game.prototype.init = function(ctx, callback) {
 	this.context = ctx;
 
-	this.addEntity(new shmup.entity(75, 75));
-	this.addEntity(new shmup.entity(515, 55, 1));
-	this.addEntity(new shmup.entity(55, 555));
-	this.addEntity(new shmup.entity(245, 255, 1));
-	this.addEntity(new shmup.entity(341, 333));
-
 	this.assetManager = new shmup.assetManager();
+	this.assetManager.addImage('/images/sentry.png');
+	this.assetManager.addImage('/images/alien.png');
 	this.assetManager.downloadAssets(callback);
+
+	this.addEntity(new shmup.enemy(this, 75, 75));
+	this.addEntity(new shmup.enemy(this, 515, 55, 1));
+	this.addEntity(new shmup.pawn(this, 55, 555));
+	this.addEntity(new shmup.enemy(this, 245, 255, 1));
+	this.addEntity(new shmup.enemy(this, 341, 333));
 }
 
 shmup.game.prototype.draw = function(callback) {
@@ -36,8 +38,6 @@ shmup.game.prototype.draw = function(callback) {
 }
 
 shmup.game.prototype.update = function() {
-//	console.log('updating');
-
 	for (var i = 0, entitiesCount = this.entities.length; i < entitiesCount; i++) {
 		this.entities[i].update();
 	}
@@ -88,6 +88,46 @@ shmup.entity.prototype.draw = function(ctx) {
         ctx.arc(this.x, this.y, 20, 0, Math.PI*2, false);
         ctx.stroke();
         ctx.closePath();
+}
+
+shmup.pawn = function(game, x, y, flag) {
+	shmup.entity.call(this, x, y, flag);
+	this.speed = 4.5;
+	this.sprite = game.assetManager.getImage('/images/sentry.png');
+}
+shmup.pawn.prototype = new shmup.entity();
+shmup.pawn.prototype.constructor = shmup.pawn;
+
+shmup.pawn.prototype.update = function() {
+	if (keydown.space)
+		console.log('shoot');
+
+	if (keydown.left)
+		this.x -= this.speed;
+
+	if (keydown.right)
+		this.x += this.speed;
+
+	if (keydown.up)
+		this.y -= this.speed;
+
+	if (keydown.down)
+		this.y += this.speed;
+}
+
+shmup.pawn.prototype.draw = function(ctx) {
+	ctx.drawImage(this.sprite, this.x, this.y);
+}
+
+shmup.enemy = function(game, x, y, flag) {
+	shmup.entity.call(this, x, y, flag);
+	this.sprite = game.assetManager.getImage('/images/alien.png');
+}
+shmup.enemy.prototype = new shmup.entity();
+shmup.enemy.prototype.constructor = shmup.enemy;
+
+shmup.enemy.prototype.draw = function(ctx) {
+	ctx.drawImage(this.sprite, this.x, this.y);
 }
 
 shmup.assetManager = function() {
