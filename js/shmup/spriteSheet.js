@@ -1,8 +1,10 @@
-var SpriteSheet = function(data){
+var shmup = shmup || {};
+
+shmup.spriteSheet = function(data){
     this.load(data);
 };
 
-SpriteSheet.prototype = {
+shmup.spriteSheet.prototype = {
     _sprites: [],
     _width: 0,
     _height: 0,
@@ -23,7 +25,7 @@ SpriteSheet.prototype = {
                     x: (i * this._width) + (sprite.x || 0),
                     y: (sprite.y || 0),
                     width: this._width,
-                    height: this.height
+                    height: this._height
                 };
             }
         }

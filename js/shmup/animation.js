@@ -1,9 +1,11 @@
-var Animation = function(data, sprites){
+var shmup = shmup || {};
+
+shmup.animation = function(data, sprites){
     this.load(data);
     this._sprites = sprites;
 };
 
-Animation.prototype = {
+shmup.animation.prototype = {
     _frames: [],
     _frame: null,
     _frameDuration: 0,

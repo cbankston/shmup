@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Canvas Spritesheet Animation</title>
-    <script src="../js/FrameTimer.js"></script>
-    <script src="../js/SpriteSheet.js"></script>
-    <script src="../js/Animation.js"></script>
+    <script src="../js/shmup/frameTimer.js"></script>
+    <script src="../js/shmup/spriteSheet.js"></script>
+    <script src="../js/shmup/animation.js"></script>
 
     <script>
         window.onload = function(){
-            var timer = new FrameTimer();
+            var timer = new shmup.frameTimer();
             timer.tick();
 
-            var sprites = new SpriteSheet({
+            var sprites = new shmup.spriteSheet({
                 width: 32,
                 height: 32,
                 sprites: [
@@ -22,7 +22,7 @@
                 ]
             });
             var ctx = document.getElementById('canvas').getContext('2d');
-            var walk = new Animation([
+            var walk = new shmup.animation([
                     { sprite: 'walk_1', time: 0.2 },
                     { sprite: 'stand', time: 0.2 },
                     { sprite: 'walk_2', time: 0.2 },
@@ -34,17 +34,17 @@
                     walk.animate(timer.getSeconds());
                     var frame = walk.getSprite();
                     ctx.clearRect(0, 0, 300, 300);
-                    ctx.drawImage(kunioImage, frame.x, frame.y, 32, 32, 0, 0, 32, 32)
+                    ctx.drawImage(kunioImage, frame.x, frame.y, frame.width, frame.height, 0, 0, frame.width, frame.height);
                     timer.tick();
                 }, 5);
             };
-            kunioImage.src = 'assets/images/kunio.gif';
+            kunioImage.src = 'assets/sprites/kunio.gif';
         };
     </script>
 </head>
 <body>
 <h1>Canvas sprite animation test</h1>
 <canvas id="canvas" width="300" height="300"></canvas>
-<div><img src="assets/images/kunio.gif"/></div>
+<div><img src="assets/sprites/kunio.gif"/></div>
 </body>
 </html>

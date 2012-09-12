@@ -1,8 +1,10 @@
-var FrameTimer = function(){
+var shmup = shmup || {};
+
+shmup.frameTimer = function(){
     this._lastTick = (new Date()).getTime();
 };
 
-FrameTimer.prototype = {
+shmup.frameTimer.prototype = {
     getSeconds: function(){
         var seconds = this._frameSpacing / 1000;
         if(isNaN(seconds)){
