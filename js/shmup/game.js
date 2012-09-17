@@ -4,6 +4,7 @@ shmup.game = function() {
 	this.assetManager = null;
 	this.entities = [];
 	this.context = null;
+	this.timer = null;
 }
 
 shmup.game.prototype.addEntity = function(entity) {
@@ -13,9 +14,13 @@ shmup.game.prototype.addEntity = function(entity) {
 shmup.game.prototype.init = function(ctx, callback) {
 	this.context = ctx;
 
+	this.timer = new shmup.frameTimer();
+	this.timer.tick();
+
 	this.assetManager = new shmup.assetManager();
 	this.assetManager.addImage('/assets/images/sentry.png');
 	this.assetManager.addImage('/assets/images/alien.png');
+	this.assetManager.addImage('/assets/sprites/lightning-bullet.png');
 	this.assetManager.downloadAssets(callback);
 
 	this.addEntity(new shmup.enemy(this, 75, 75));
@@ -38,6 +43,7 @@ shmup.game.prototype.draw = function(callback) {
 }
 
 shmup.game.prototype.update = function() {
+	this.timer.tick();
 	for (var i = 0, entitiesCount = this.entities.length; i < entitiesCount; i++) {
 		this.entities[i].update();
 	}
