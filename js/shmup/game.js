@@ -14,8 +14,8 @@ shmup.game.prototype.init = function(ctx, callback) {
 	this.context = ctx;
 
 	this.assetManager = new shmup.assetManager();
-	this.assetManager.addImage('/images/sentry.png');
-	this.assetManager.addImage('/images/alien.png');
+	this.assetManager.addImage('/assets/images/sentry.png');
+	this.assetManager.addImage('/assets/images/alien.png');
 	this.assetManager.downloadAssets(callback);
 
 	this.addEntity(new shmup.enemy(this, 75, 75));

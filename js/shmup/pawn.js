@@ -3,7 +3,7 @@ var shmup = shmup || {};
 shmup.pawn = function(game, x, y, flag) {
 	shmup.entity.call(this, x, y, flag);
 	this.speed = 4.5;
-	this.sprite = game.assetManager.getImage('/images/sentry.png');
+	this.sprite = game.assetManager.getImage('/assets/images/sentry.png');
 }
 shmup.pawn.prototype = new shmup.entity();
 shmup.pawn.prototype.constructor = shmup.pawn;
