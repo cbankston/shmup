@@ -8,15 +8,15 @@ shmup.assetManager = function() {
 
 	this.imageAssets = [];
 	this.soundAssets = [];
-}
+};
 
 shmup.assetManager.prototype.addImage = function(path) {
 	this.imageAssets.push(path);
-}
+};
 
 shmup.assetManager.prototype.addSound = function(path) {
 	this.soundAssets.push(path);
-}
+};
 
 shmup.assetManager.prototype.downloadAssets = function(callback) {
 	if (this.isComplete()) {
@@ -25,7 +25,7 @@ shmup.assetManager.prototype.downloadAssets = function(callback) {
 		this.downloadImages(callback);
 		this.downloadSounds(callback);
 	}
-}
+};
 
 shmup.assetManager.prototype.downloadImages = function(callback) {
 	for(var i = 0, queueLength = this.imageAssets.length; i < queueLength; i++) {
@@ -45,7 +45,7 @@ shmup.assetManager.prototype.downloadImages = function(callback) {
 		img.src = path;
 		this.assetCache[path] = img;
 	}
-}
+};
 
 shmup.assetManager.prototype.downloadSounds = function(callback) {
 	for(var i = 0, queueLength = this.soundAssets.length; i < queueLength; i++) {
@@ -56,16 +56,16 @@ shmup.assetManager.prototype.downloadSounds = function(callback) {
 			callback(this);
 		this.assetCache[path] = null;
 	}
-}
+};
 
 shmup.assetManager.prototype.getImage = function(path) {
 	return this.assetCache[path];
-}
+};
 
 shmup.assetManager.prototype.getSound = function(path) {
 	return this.assetCache[path];
-}
+};
 
 shmup.assetManager.prototype.isComplete = function(callback) {
 	return (this.imageAssets.length + this.soundAssets.length) === (this.assetFailureCount + this.assetSuccessCount);
-}
+};
