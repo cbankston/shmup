@@ -33,4 +33,4 @@ shmup.animation.prototype = {
         //Return the sprite for the current frame
         return this._sprites.getOffset(this._frames[this._frameIndex].sprite);
     }
-}
+};
