@@ -5,8 +5,8 @@ shmup.pawn = function(game, x, y, flag) {
 	this.game = game;
 	this.speed = 4.5;
 	this.sprite = game.assetManager.getImage('/assets/images/sentry.png');
-	this.lastShot = 0
-}
+	this.lastShot = 0;
+};
 shmup.pawn.prototype = new shmup.entity();
 shmup.pawn.prototype.constructor = shmup.pawn;
 
@@ -25,7 +25,7 @@ shmup.pawn.prototype.update = function() {
 
 	if (keydown.down)
 		this.y += this.speed;
-}
+};
 
 shmup.pawn.prototype.shoot = function() {
 	var currentTime = +new Date();
@@ -34,8 +34,8 @@ shmup.pawn.prototype.shoot = function() {
 		this.game.addEntity(bullet);
 		this.lastShot = currentTime;
 	}
-}
+};
 
 shmup.pawn.prototype.draw = function(ctx) {
 	ctx.drawImage(this.sprite, this.x, this.y);
-}
+};
