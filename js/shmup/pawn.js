@@ -11,19 +11,19 @@ shmup.pawn.prototype = new shmup.entity();
 shmup.pawn.prototype.constructor = shmup.pawn;
 
 shmup.pawn.prototype.update = function() {
-	if (keydown.space)
+	if (this.game.controller.keydown.space)
 		this.shoot();
 
-	if (keydown.left)
+	if (this.game.controller.keydown.left)
 		this.x -= this.speed;
 
-	if (keydown.right)
+	if (this.game.controller.keydown.right)
 		this.x += this.speed;
 
-	if (keydown.up)
+	if (this.game.controller.keydown.up)
 		this.y -= this.speed;
 
-	if (keydown.down)
+	if (this.game.controller.keydown.down)
 		this.y += this.speed;
 };
 

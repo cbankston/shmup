@@ -5,12 +5,13 @@
 	<meta name="language" content="en" />
 	<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.hotkeys.js"></script>
-	<script type="text/javascript" src="/js/key_status.js"></script>
 	<script type="text/javascript" src="/js/shmup/helpers.js"></script>
 	<script type="text/javascript" src="/js/shmup/assetManager.js"></script>
 	<script type="text/javascript" src="/js/shmup/frameTimer.js"></script>
 	<script type="text/javascript" src="/js/shmup/spriteSheet.js"></script>
 	<script type="text/javascript" src="/js/shmup/animation.js"></script>
+	<script type="text/javascript" src="/js/shmup/controller.js"></script>
+	<script type="text/javascript" src="/js/shmup/startMenu.js"></script>
 	<script type="text/javascript" src="/js/shmup/entity.js"></script>
 	<script type="text/javascript" src="/js/shmup/enemy.js"></script>
 	<script type="text/javascript" src="/js/shmup/lightningBullet.js"></script>
@@ -22,12 +23,9 @@
 
 <div class="container" id="page">
 	<div id="header">
-		<div id="logo">Shmup Sandbox</div>
 	</div>
 
 	<div id="content">
-		<h1>Hello SHMUP</h1>
-
 		<div id="game">
 			<canvas id="canvas" width="800" height="600"></canvas>
 		</div>
@@ -40,12 +38,12 @@
 
 <script type="text/javascript">
 $(function() {
-	var game = new shmup.game();
-	var canvas = document.getElementById('canvas');
+  var game = new shmup.game();
+  var canvas = document.getElementById('canvas');
 
-	game.init(canvas.getContext('2d'), function(){
-		game.start();
-	});
+  game.init(canvas.getContext('2d'), function() {
+    game.showStartMenu();
+  });
 });
 </script>
 </body>
